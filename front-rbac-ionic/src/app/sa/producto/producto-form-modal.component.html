@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar class="modal-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar Producto' : 'Nuevo Producto' }}</ion-title>
+  </ion-toolbar>
+ </ion-header>
+
+<ion-content class="modal-content">
+  <ion-list>
+    <ion-item lines="inset">
+      <ion-label position="floating">Nombre Producto *</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="nuevoProducto.Nombre_Producto"
+        maxlength="40">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea
+        [(ngModel)]="nuevoProducto.Descripcion_Producto"
+        maxlength="100"
+        rows="3">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="nuevoProducto.Stock_Producto"
+        min="0">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Valor ($)</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="nuevoProducto.Valor_Producto"
+        min="0"
+        step="0.01">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Unidad de Medida</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="nuevoProducto.Unidad_Medida"
+        maxlength="20">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="actions">
+    <ion-button expand="block" class="save-btn" (click)="guardarProducto()">
+      <ion-icon name="save" slot="start"></ion-icon>
+      {{ isEdit ? 'Guardar Cambios' : 'Guardar Producto' }}
+    </ion-button>
+  </div>
+</ion-content>

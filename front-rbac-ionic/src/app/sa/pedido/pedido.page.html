@@ -1,0 +1,64 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="page">
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-card-title>Gestión de Pedidos</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <div *ngIf="pedidos.length > 0" class="pedidos-grid">
+      <ion-card class="pedido-card" *ngFor="let pedido of pedidos">
+        <ion-card-content>
+          <div class="pedido-header">
+            <h2>{{ pedido.Id_Pedido }}</h2>
+          </div>
+          <div class="pedido-info">
+            <div class="info-row">
+              <span class="label">Cliente:</span>
+              <span class="value">{{ pedido.Nombre_Cliente }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Vendedor:</span>
+              <span class="value">{{ pedido.Nombre_Vendedor }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Fecha:</span>
+              <span class="value">{{ formatFecha(pedido.Fecha_Pedido) }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Subtotal:</span>
+              <span class="value">${{ pedido.Subtotal_Pedido | number:'1.2-2' }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">IVA (12%):</span>
+              <span class="value">${{ pedido.IVA | number:'1.2-2' }}</span>
+            </div>
+            <div class="info-row total">
+              <span class="label">Total:</span>
+              <span class="value">${{ pedido.Total_Pedido | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <div class="pedido-actions">
+            <ion-button expand="block" fill="outline" color="warning" size="small" (click)="editarPedido(pedido)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button expand="block" fill="outline" color="danger" size="small" (click)="confirmarEliminar(pedido)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="pedidos.length === 0" style="padding: 32px; text-align: center;">
+      <p>No hay pedidos. Presiona el botón + para crear uno.</p>
+    </div>
+  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

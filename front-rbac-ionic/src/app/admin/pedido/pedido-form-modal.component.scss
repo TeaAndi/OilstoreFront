@@ -1,0 +1,28 @@
+:host { --c-primary: #fbbf24; --c-primary-2: #fb923c; }
+.modal-toolbar { --background: linear-gradient(135deg, var(--c-primary), var(--c-primary-2)); --color: #fff; }
+.modal-toolbar ion-button { --color: #ffffff; color: #ffffff !important; }
+.modal-content { --background: #ffffff; }
+ion-list { padding: 10px 0 0; background: #ffffff; }
+ion-item { --background: #ffffff; --padding-start: 16px; --padding-end: 16px; --border-color: #e5e7eb; color: #374151; }
+ion-label { color: #374151; }
+ion-input, ion-select { --color: #374151; }
+.section-header { padding: 16px 16px 8px; }
+.section-header h3 { margin: 0; color: #fff; font-size: 16px; font-weight: 600; }
+.productos-section { padding: 0 16px 16px; }
+.producto-selector, .cantidad-input { margin-bottom: 12px; }
+.add-producto-btn { margin: 12px 0; --background: transparent; --border-color: var(--c-primary); --color: var(--c-primary); }
+.detalles-lista { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.detalle-item { display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 10px 12px; border-radius: 8px; border: 1px solid #e5e7eb; }
+.detalle-info { display: flex; gap: 12px; align-items: center; flex: 1; }
+.detalle-info .nombre { color: #374151; font-weight: 600; flex: 1; }
+.detalle-info .cantidad { color: #6b7280; font-size: 13px; }
+.detalle-info .subtotal { color: #10b981; font-weight: 700; }
+.total-section { display: flex; flex-direction: column; gap: 6px; padding: 12px; margin-top: 12px; background: rgba(16,185,129,0.08); border-radius: 8px; border: 1px solid rgba(16,185,129,0.3); }
+.total-row { display: flex; justify-content: space-between; }
+.total-row .label { color: #6b7280; font-weight: 500; font-size: 14px; }
+.total-row .value { color: #374151; font-weight: 600; }
+.total-row.total-final { padding-top: 6px; border-top: 1px solid rgba(16,185,129,0.3); }
+.total-row.total-final .label { color: #374151; font-size: 16px; }
+.total-row.total-final .value { color: #10b981; font-size: 18px; font-weight: 700; }
+.actions { padding: 16px; }
+.save-btn { --background: linear-gradient(135deg, var(--c-primary), var(--c-primary-2)); --color: #ffffff; border-radius: 12px; font-weight: 600; box-shadow: 0 10px 24px rgba(251,146,60,0.35); }

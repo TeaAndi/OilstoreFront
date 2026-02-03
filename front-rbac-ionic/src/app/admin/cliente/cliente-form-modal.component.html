@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar class="modal-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelar()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title>{{ isEdit ? 'Editar Cliente' : 'Nuevo Cliente' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="modal-content">
+  <ion-list>
+    <ion-item lines="inset">
+      <ion-label position="floating">Nombre Cliente *</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="nuevoCliente.Nombre_Cliente"
+        maxlength="40">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-textarea
+        [(ngModel)]="nuevoCliente.Direccion_Cliente"
+        maxlength="50"
+        rows="2">
+      </ion-textarea>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input
+        type="tel"
+        [(ngModel)]="nuevoCliente.Telefono_Cliente"
+        maxlength="10">
+      </ion-input>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input
+        type="email"
+        [(ngModel)]="nuevoCliente.Correo_Cliente"
+        maxlength="50">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="actions">
+    <ion-button expand="block" class="save-btn" (click)="guardarCliente()">
+      <ion-icon name="save" slot="start"></ion-icon>
+      {{ isEdit ? 'Guardar Cambios' : 'Guardar Cliente' }}
+    </ion-button>
+  </div>
+</ion-content>

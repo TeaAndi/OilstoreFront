@@ -1,0 +1,70 @@
+<ion-content>
+  <div class="page">
+    <div class="hero hero-admin">
+      <ion-button class="logout" fill="clear" size="small" (click)="confirmLogout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+      <div>
+        <p class="eyebrow">Sesión de administrador</p>
+        <h1>Bienvenido, <span>{{ username }}</span></h1>
+        <p class="subtitle">Panel Admin 🔐</p>
+      </div>
+      <div class="badge badge-admin">ADMIN</div>
+    </div>
+
+    <div class="activity-section-wrapper">
+      <div class="activity-section">
+        <div class="activity-header">
+          <ion-button fill="clear" size="small" (click)="refreshActivity()">
+            <ion-icon name="refresh-outline"></ion-icon>
+          </ion-button>
+          <h2>Actividad Reciente</h2>
+          <ion-button fill="clear" size="small" (click)="toggleActivity()">
+            <ion-icon [icon]="chevronDownIcon" [ngClass]="{ 'expanded': isActivityExpanded }"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="activity-body" [class.collapsed]="!isActivityExpanded">
+          <div class="activity-list">
+            <div class="activity-item" *ngFor="let activity of recentActivity; let i = index">
+              <div class="activity-icon" [ngClass]="activity.type">
+                <ion-icon [icon]="activity.icon"></ion-icon>
+              </div>
+              <div class="activity-info">
+                <p class="activity-title">{{ activity.title }}</p>
+                <p class="activity-time">{{ activityService.getRelativeTime(activity.time) }}</p>
+              </div>
+            </div>
+            <div class="empty" *ngIf="recentActivity.length === 0">
+              Sin actividad reciente todavía.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modules-section-wrapper">
+      <div class="menu-grid">
+        <h2 class="section-title">Módulos</h2>
+        <div class="menu-card" routerLink="/admin/producto" *ngIf="canRead">
+          <ion-icon [icon]="cubeOutline"></ion-icon>
+          <p class="label">Productos</p>
+        </div>
+
+        <div class="menu-card" routerLink="/admin/cliente" *ngIf="canRead">
+          <ion-icon [icon]="peopleOutline"></ion-icon>
+          <p class="label">Clientes</p>
+        </div>
+
+        <div class="menu-card" routerLink="/admin/vendedor" *ngIf="canRead">
+          <ion-icon [icon]="businessOutline"></ion-icon>
+          <p class="label">Vendedores</p>
+        </div>
+
+        <div class="menu-card" routerLink="/admin/pedido" *ngIf="canRead">
+          <ion-icon [icon]="documentOutline"></ion-icon>
+          <p class="label">Pedidos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

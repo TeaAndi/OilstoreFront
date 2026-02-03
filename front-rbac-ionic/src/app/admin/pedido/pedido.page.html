@@ -1,0 +1,78 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ion-card class="title-card">
+    <ion-card-header>
+      <div class="back-button">
+        <ion-back-button defaultHref="/home-admin"></ion-back-button>
+      </div>
+      <ion-card-title>Gestión de pedidos</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <div class="page">
+    <div class="search-container">
+      <ion-searchbar
+        [(ngModel)]="searchTerm"
+        (ionInput)="filtrarPedidos()"
+        placeholder="Buscar por cliente, vendedor o ID"
+        showCancelButton="focus"
+        searchIcon="search-outline">
+      </ion-searchbar>
+    </div>
+
+    <div *ngIf="pedidosFiltrados.length > 0" class="pedidos-list">
+      <ion-card class="pedido-card" *ngFor="let pedido of pedidosFiltrados">
+        <ion-card-content>
+          <div class="card-header">
+            <h3>{{ pedido.Nombre_Cliente }}</h3>
+            <div class="badge">{{ formatFecha(pedido.Fecha_Pedido) }}</div>
+          </div>
+
+          <div class="card-body">
+            <div class="info-row">
+              <span class="label">Cliente</span>
+              <span class="value">{{ pedido.Nombre_Cliente }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Vendedor</span>
+              <span class="value">{{ pedido.Nombre_Vendedor }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">Subtotal</span>
+              <span class="value">${{ pedido.Subtotal_Pedido | number:'1.2-2' }}</span>
+            </div>
+            <div class="info-row">
+              <span class="label">IVA</span>
+              <span class="value">${{ pedido.IVA | number:'1.2-2' }}</span>
+            </div>
+            <div class="info-row total">
+              <span class="label">Total</span>
+              <span class="value">${{ pedido.Total_Pedido | number:'1.2-2' }}</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="action-btn edit" (click)="editarPedido(pedido)">
+              <ion-icon name="create-outline"></ion-icon>
+              Editar
+            </button>
+            <button class="action-btn delete" (click)="confirmarEliminar(pedido)">
+              <ion-icon name="trash-outline"></ion-icon>
+              Eliminar
+            </button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="pedidosFiltrados.length === 0" class="empty-state">
+      <ion-icon name="alert-circle"></ion-icon>
+      <p>No hay pedidos que coincidan con la búsqueda.</p>
+    </div>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

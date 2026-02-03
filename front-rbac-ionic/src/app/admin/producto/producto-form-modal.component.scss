@@ -1,0 +1,57 @@
+:host {
+  --c-primary: #fbbf24;
+  --c-primary-2: #fb923c;
+}
+
+.modal-toolbar {
+  --background: linear-gradient(135deg, var(--c-primary), var(--c-primary-2));
+  --color: #fff;
+}
+
+/* Ensure the Cancel button text is white on the toolbar */
+.modal-toolbar ion-button {
+  --color: #ffffff;
+  color: #ffffff !important;
+}
+
+.modal-content {
+  --background: #f3f4f6;
+}
+
+ion-list {
+  padding: 10px 0 0 0;
+  background: transparent;
+}
+
+ion-item {
+  --background: #ffffff;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --border-color: rgba(0,0,0,0.08);
+  color: #1f2937;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+ion-label { 
+  color: #6b7280;
+  font-weight: 500;
+}
+ion-input, ion-textarea { 
+  --color: #1f2937;
+  --placeholder-color: #9ca3af;
+}
+
+.actions {
+  padding: 16px;
+}
+
+.save-btn {
+  --background: linear-gradient(135deg, var(--c-primary), var(--c-primary-2));
+  --color: #ffffff;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(251, 191, 36, 0.35);
+}
+

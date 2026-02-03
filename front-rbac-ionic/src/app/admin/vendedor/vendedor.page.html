@@ -1,0 +1,66 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ion-card class="title-card">
+    <ion-card-header>
+      <div class="back-button">
+        <ion-back-button defaultHref="/home-admin"></ion-back-button>
+      </div>
+      <ion-card-title>Gestión de vendedores</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <div class="page">
+    <div class="search-container">
+      <ion-searchbar
+        [(ngModel)]="searchTerm"
+        (ionInput)="filtrarVendedores()"
+        placeholder="Buscar por nombre, correo o teléfono"
+        showCancelButton="focus"
+        searchIcon="search-outline">
+      </ion-searchbar>
+    </div>
+
+    <div *ngIf="vendedoresFiltrados.length > 0" class="vendedores-list">
+      <div class="cliente-card" *ngFor="let vendedor of vendedoresFiltrados">
+        <div class="card-header">
+          <h3>{{ vendedor.Nombre_Vendedor }}</h3>
+        </div>
+        <div class="card-body">
+          <!-- ID oculto, no se muestra -->
+          <div class="info-row" *ngIf="vendedor.Telefono_Vendedor">
+            <span class="label">Tel:</span>
+            <span class="value">{{ vendedor.Telefono_Vendedor }}</span>
+          </div>
+          <div class="info-row" *ngIf="vendedor.Correo_Vendedor">
+            <span class="label">Email:</span>
+            <span class="value">{{ vendedor.Correo_Vendedor }}</span>
+          </div>
+          <div class="info-row description" *ngIf="vendedor.Direccion_Vendedor">
+            <span class="label">Dir:</span>
+            <span class="value">{{ vendedor.Direccion_Vendedor }}</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn edit" (click)="editarVendedor(vendedor)">
+            <ion-icon name="create-outline"></ion-icon>
+            Editar
+          </button>
+          <button class="action-btn delete" (click)="confirmarEliminar(vendedor)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="vendedoresFiltrados.length === 0" class="empty-state">
+      <ion-icon name="alert-circle"></ion-icon>
+      <p>No hay vendedores que coincidan con la búsqueda.</p>
+    </div>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

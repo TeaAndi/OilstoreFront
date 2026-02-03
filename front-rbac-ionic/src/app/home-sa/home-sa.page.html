@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="page">
+    <div class="hero hero-sa">
+      <div>
+        <p class="eyebrow">Sesión de administrador</p>
+        <h1>Bienvenido, <span>{{ username }}</span></h1>
+        <p class="subtitle">Panel SA ⚙️</p>
+      </div>
+      <div class="badge badge-sa">SA</div>
+    </div>
+
+    <ion-card class="session-card">
+      <ion-card-header>
+        <ion-card-title>Información de SA</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="session-grid">
+          <div>
+            <p class="label">Usuario</p>
+            <p class="value">{{ username }}</p>
+          </div>
+          <div>
+            <p class="label">Rol SQL</p>
+            <p class="value">{{ dbRole }}</p>
+          </div>
+          <div>
+            <p class="label">Permisos</p>
+            <p class="value">db_owner</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="actions">
+      <button class="cta primary" routerLink="/producto" *ngIf="canRead">
+        Ver Productos
+      </button>
+
+      <button class="cta" routerLink="/cliente" *ngIf="canRead">
+        Ver Clientes
+      </button>
+
+      <button class="cta" routerLink="/vendedor" *ngIf="canRead">
+        Ver Vendedores
+      </button>
+
+      <button class="cta" routerLink="/pedido" *ngIf="canRead">
+        Ver Pedidos
+      </button>
+
+      <button class="cta secondary" routerLink="/sa/usuarios" *ngIf="isOwner && isSa">
+        Gestión de Usuarios (SA)
+      </button>
+
+      <button class="cta danger" type="button" (click)="logout()">
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+</ion-content>

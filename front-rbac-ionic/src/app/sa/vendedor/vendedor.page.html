@@ -1,0 +1,53 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="page">
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-card-title>Gestión de Vendedores</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <div *ngIf="vendedores.length > 0" class="vendedores-grid">
+      <ion-card class="vendedor-card" *ngFor="let vendedor of vendedores">
+        <ion-card-content>
+          <div class="vendedor-info">
+            <h2>{{ vendedor.Nombre_Vendedor }}</h2>
+            <p class="vendedor-id">ID: {{ vendedor.Id_Vendedor }}</p>
+            <div class="vendedor-details">
+              <div class="detail-item" *ngIf="vendedor.Telefono_Vendedor">
+                <span class="label">Tel:</span>
+                <span class="value">{{ vendedor.Telefono_Vendedor }}</span>
+              </div>
+              <div class="detail-item" *ngIf="vendedor.Correo_Vendedor">
+                <span class="label">Email:</span>
+                <span class="value">{{ vendedor.Correo_Vendedor }}</span>
+              </div>
+              <div class="detail-item" *ngIf="vendedor.Direccion_Vendedor">
+                <span class="label">Dir:</span>
+                <span class="value">{{ vendedor.Direccion_Vendedor }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="vendedor-actions">
+            <ion-button expand="block" fill="outline" color="warning" (click)="editarVendedor(vendedor)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button expand="block" fill="outline" color="danger" (click)="confirmarEliminar(vendedor)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="vendedores.length === 0" style="padding: 32px; text-align: center;">
+      <p>No hay vendedores. Presiona el botón + para crear uno.</p>
+    </div>
+  </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

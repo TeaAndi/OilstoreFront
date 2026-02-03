@@ -1,0 +1,57 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="page">
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-card-title>Gestión de Productos</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <!-- Botón Flotante FAB moved below to be direct child of ion-content -->
+
+    <!-- Lista de Productos como Cards -->
+    <div *ngIf="productos.length > 0" class="productos-grid">
+      <ion-card class="producto-card" *ngFor="let producto of productos">
+        <ion-card-content>
+          <div class="producto-info">
+            <h2>{{ producto.Nombre_Producto }}</h2>
+            <p class="producto-id">ID: {{ producto.Id_Producto }}</p>
+            <div class="producto-details">
+              <div class="detail-item">
+                <span class="label">Stock:</span>
+                <span class="value">{{ producto.Stock_Producto }} {{ producto.Unidad_Medida }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Valor:</span>
+                <span class="value">${{ producto.Valor_Producto }}</span>
+              </div>
+              <div class="detail-item" *ngIf="producto.Descripcion_Producto">
+                <span class="label">Desc:</span>
+                <span class="value">{{ producto.Descripcion_Producto }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="producto-actions">
+            <ion-button expand="block" fill="outline" color="warning" (click)="editarProducto(producto)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button expand="block" fill="outline" color="danger" (click)="confirmarEliminar(producto)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="productos.length === 0" style="padding: 32px; text-align: center;">
+      <p>No hay productos. Presiona el botón + para crear uno.</p>
+    </div>
+  </div>
+  <!-- FAB anchored to viewport (direct child of ion-content) -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

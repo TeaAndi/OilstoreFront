@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="screen">
+    <div class="logo-card">
+      <div class="logo-mark">
+        <img src="assets/icon/logoOil.png" alt="Logo" width="220" height="220" />
+      </div>
+      <h1 class="app-title">OilStore</h1>
+    </div>
+
+    <div class="form-card">
+      <ion-item lines="none">
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-input placeholder="Ingresa tu usuario aquí..." [(ngModel)]="username"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input placeholder="Ingresa tu contraseña..." type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+      <button class="cta primary" type="button" [disabled]="loading" (click)="doLogin()">
+        {{ loading ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+    </div>
+
+    <div class="overlay loading" *ngIf="loading">
+      <div class="loader"></div>
+      <p>Cargando...</p>
+    </div>
+
+    <div class="overlay welcome" *ngIf="welcome">
+      <div class="welcome-card">
+        <div class="welcome-icon">✅</div>
+        <p class="welcome-title">{{ welcomeMessage }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,68 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="page">
+    <!-- Header card -->
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-buttons class="back-button">
+          <ion-back-button defaultHref="/home-admin"></ion-back-button>
+        </ion-buttons>
+        <ion-card-title>Gestión de Clientes</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+      <ion-searchbar
+        [(ngModel)]="searchTerm"
+        (ionInput)="filtrarClientes()"
+        placeholder="Buscar cliente..."
+        debounce="300">
+      </ion-searchbar>
+    </div>
+
+    <!-- Cards de clientes -->
+    <div class="clientes-list" *ngIf="clientesFiltrados.length > 0">
+      <div class="cliente-card" *ngFor="let cliente of clientesFiltrados">
+        <div class="card-header">
+          <h3>{{ cliente.Nombre_Cliente }}</h3>
+        </div>
+        <div class="card-body">
+          <div class="info-row" *ngIf="cliente.Telefono_Cliente">
+            <span class="label">Tel:</span>
+            <span class="value">{{ cliente.Telefono_Cliente }}</span>
+          </div>
+          <div class="info-row" *ngIf="cliente.Correo_Cliente">
+            <span class="label">Email:</span>
+            <span class="value">{{ cliente.Correo_Cliente }}</span>
+          </div>
+          <div class="info-row description" *ngIf="cliente.Direccion_Cliente">
+            <span class="label">Dir:</span>
+            <span class="value">{{ cliente.Direccion_Cliente }}</span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="action-btn edit" (click)="editarCliente(cliente)">
+            <ion-icon name="create-outline"></ion-icon>
+            Editar
+          </button>
+          <button class="action-btn delete" (click)="confirmarEliminar(cliente)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="clientesFiltrados.length === 0">
+      <ion-icon name="people-outline"></ion-icon>
+      <p *ngIf="searchTerm">No hay clientes que coincidan con tu búsqueda.</p>
+      <p *ngIf="!searchTerm">No hay clientes. Presiona el botón + para crear uno.</p>
+    </div>
+  </div>
+  <!-- FAB anchored to viewport -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [hidden]="fabHidden">
+    <ion-fab-button color="warning" (click)="abrirFormulario()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

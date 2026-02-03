@@ -1,0 +1,26 @@
+:host { --c-primary: #4f46e5; --c-secondary: #06b6d4; --bg-top: #0f172a; --bg-bottom: #0b1220; }
+.title-card { --background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border-radius: 14px; box-shadow: 0 10px 24px rgba(0,0,0,0.25); margin-bottom: 4px; margin-left: -6px; margin-right: -6px; }
+.title-card ion-card-header { padding: 14px 16px; }
+.title-card ion-card-title { color: #fff; font-weight: 700; text-align: center; }
+ion-content { --background: radial-gradient(1200px 700px at 10% -10%, rgba(79,70,229,0.18) 0%, transparent 45%), radial-gradient(1200px 700px at 110% 120%, rgba(6,182,212,0.18) 0%, transparent 45%), linear-gradient(180deg, var(--bg-top), var(--bg-bottom)); }
+ion-fab { transition: transform 180ms ease, opacity 180ms ease; z-index: 999 !important; }
+ion-fab-button { --width: 64px; --height: 64px; --background: #2563eb; --box-shadow: 0 4px 16px rgba(37,99,235,0.4); }
+ion-fab-button ion-icon { font-size: 32px; color: white; }
+ion-fab.hide { transform: translateY(96px); opacity: 0; pointer-events: none; }
+.page { max-width: 720px; margin: 0 auto; padding: 18px 14px 32px; display: flex; flex-direction: column; gap: 8px; }
+.pedidos-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+.pedido-card { background: rgba(255,255,255,0.06); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 4px 12px rgba(0,0,0,0.25); margin: 0; padding: 12px; }
+.pedido-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.pedido-header h2 { margin: 0; color: #fff; font-weight: 600; font-size: 16px; }
+.estado { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.estado.pendiente { background: #fbbf24; color: #1f2937; }
+.estado.completado { background: #10b981; color: #fff; }
+.estado.cancelado { background: #ef4444; color: #fff; }
+.pedido-info { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.info-row { display: flex; justify-content: space-between; font-size: 13px; }
+.info-row .label { color: #9ca3af; font-weight: 500; }
+.info-row .value { color: #e5e7eb; }
+.info-row.total { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.1); font-weight: 600; font-size: 14px; }
+.info-row.total .value { color: #10b981; }
+.pedido-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.pedido-actions ion-button { margin: 0; --padding-start: 4px; --padding-end: 4px; }

@@ -1,0 +1,117 @@
+
+
+
+
+<ion-content>
+  <div class="page">
+    <!-- Title card matching producto style -->
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-card-title>Crear nuevo login SQL</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <!-- Card del formulario -->
+    <ion-card class="form-card">
+      <ion-card-content>
+        <form>
+          <ion-item lines="none" class="usuario-item">
+            <ion-input
+              class="usuario-input"
+              label="Usuario"
+              labelPlacement="stacked"
+              [(ngModel)]="username"
+              [ngModelOptions]="{standalone: true}"
+              placeholder="Username">
+              <ion-icon name="person-outline" slot="start" class="usuario-icon"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item lines="none" class="usuario-item">
+            <ion-input
+              class="usuario-input"
+              type="password"
+              label="Contraseña"
+              labelPlacement="stacked"
+              [(ngModel)]="password"
+              [ngModelOptions]="{standalone: true}"
+              placeholder="Password">
+              <ion-icon name="lock-closed-outline" slot="start" class="usuario-icon"></ion-icon>
+            </ion-input>
+          </ion-item>
+          
+          <!-- Selector de rol personalizado -->
+          <ion-item lines="none" class="usuario-item usuario-item-selector" (click)="toggleSelector()">
+            <span slot="label" class="usuario-label">Rol</span>
+            <ion-icon name="shield-checkmark-outline" slot="start" class="usuario-icon"></ion-icon>
+            <div class="usuario-selector-value">
+              {{ dbRole }}
+              <ion-icon [name]="mostrarSelector ? 'chevron-up' : 'chevron-down'" class="chevron-icon"></ion-icon>
+            </div>
+          </ion-item>
+            
+            <!-- Opciones de roles con diseño mejorado -->
+            <div *ngIf="mostrarSelector" class="roles-container">
+              <div 
+                class="rol-item" 
+                [class.rol-selected]="dbRole === 'db_datareader'"
+                (click)="seleccionarRol('db_datareader')">
+                <div class="rol-header">
+                  <strong>db_datareader (Lectura)</strong>
+                </div>
+                <p class="rol-description">Permite leer datos de todas las tablas de la base de datos. Solo tiene permisos de consulta SELECT.</p>
+              </div>
+              
+              <div 
+                class="rol-item" 
+                [class.rol-selected]="dbRole === 'db_datawriter'"
+                (click)="seleccionarRol('db_datawriter')">
+                <div class="rol-header">
+                  <strong>db_datawriter (Escritura)</strong>
+                </div>
+                <p class="rol-description">Permite insertar, actualizar y eliminar datos en todas las tablas. Incluye permisos INSERT, UPDATE y DELETE.</p>
+              </div>
+              
+              <div 
+                class="rol-item" 
+                [class.rol-selected]="dbRole === 'db_owner'"
+                (click)="seleccionarRol('db_owner')">
+                <div class="rol-header">
+                  <strong>db_owner (Admin BD)</strong>
+                </div>
+                <p class="rol-description">Control total sobre la base de datos. Puede realizar cualquier operación incluida la creación de tablas, vistas, procedimientos, etc.</p>
+              </div>
+            </div>
+            
+            <!-- Card de información del rol seleccionado -->
+            <div *ngIf="!mostrarSelector" class="rol-info-card">
+              <div class="rol-info-header">
+                <ion-icon name="information-circle" class="info-icon"></ion-icon>
+                <strong>{{ getRolInfo().nombre }}</strong>
+              </div>
+              <p class="rol-info-text">{{ getRolInfo().descripcion }}</p>
+            </div>
+          
+          <div class="usuario-btn-wrapper">
+            <button class="usuario-btn" (click)="crear()" [disabled]="loading">
+              {{ loading ? 'Creando...' : 'Crear usuario' }}
+            </button>
+          </div>
+          <ion-text *ngIf="resultMsg" class="usuario-msg">
+            <p>{{ resultMsg }}</p>
+          </ion-text>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+  <ng-template #noAccess>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Acceso restringido</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Solo el usuario <strong>sa</strong> puede crear logins.
+      </ion-card-content>
+    </ion-card>
+  </ng-template>

@@ -1,0 +1,55 @@
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="page">
+    <ion-card class="title-card">
+      <ion-card-header>
+        <ion-card-title>Gestión de Clientes</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <!-- Lista de Clientes como Cards -->
+    <div *ngIf="clientes.length > 0" class="clientes-grid">
+      <ion-card class="cliente-card" *ngFor="let cliente of clientes">
+        <ion-card-content>
+          <div class="cliente-info">
+            <h2>{{ cliente.Nombre_Cliente }}</h2>
+            <p class="cliente-id">ID: {{ cliente.Id_Cliente }}</p>
+            <div class="cliente-details">
+              <div class="detail-item" *ngIf="cliente.Telefono_Cliente">
+                <span class="label">Tel:</span>
+                <span class="value">{{ cliente.Telefono_Cliente }}</span>
+              </div>
+              <div class="detail-item" *ngIf="cliente.Correo_Cliente">
+                <span class="label">Email:</span>
+                <span class="value">{{ cliente.Correo_Cliente }}</span>
+              </div>
+              <div class="detail-item" *ngIf="cliente.Direccion_Cliente">
+                <span class="label">Dir:</span>
+                <span class="value">{{ cliente.Direccion_Cliente }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="cliente-actions">
+            <ion-button expand="block" fill="outline" color="warning" (click)="editarCliente(cliente)">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Editar
+            </ion-button>
+            <ion-button expand="block" fill="outline" color="danger" (click)="confirmarEliminar(cliente)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon>
+              Eliminar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngIf="clientes.length === 0" style="padding: 32px; text-align: center;">
+      <p>No hay clientes. Presiona el botón + para crear uno.</p>
+    </div>
+  </div>
+  <!-- FAB anchored to viewport -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [ngClass]="{ hide: fabHidden }">
+    <ion-fab-button (click)="abrirFormulario()" color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

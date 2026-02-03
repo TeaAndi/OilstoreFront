@@ -1,0 +1,48 @@
+:host {
+  --c-primary: #fbbf24;
+  --c-secondary: #fb923c;
+  --bg-top: #f9fafb;
+  --bg-bottom: #f3f4f6;
+}
+
+.modal-toolbar {
+  --background: linear-gradient(135deg, var(--c-primary), var(--c-secondary));
+  --color: #fff;
+}
+
+.modal-toolbar ion-button {
+  --color: #ffffff;
+  color: #ffffff !important;
+}
+
+.modal-content {
+  --background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+ion-list {
+  padding: 10px 0 0 0;
+  background: transparent;
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --border-color: rgba(251, 146, 60, 0.2);
+  color: #1f2937;
+}
+
+ion-label { color: #6b7280; }
+ion-input, ion-textarea { --color: #1f2937; }
+
+.actions {
+  padding: 16px;
+}
+
+.save-btn {
+  --background: linear-gradient(135deg, var(--c-primary), var(--c-secondary));
+  --color: #ffffff;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(251, 146, 60, 0.35);
+}
